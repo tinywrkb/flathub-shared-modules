@@ -1,8 +1,7 @@
 {
     "name": "pyqt5",
     "config-opts": [
-        "--assume-shared",
-        "--concatenate",
+        "--concatenate=1",
         "--confirm-license",
         "--enable=QtCore",
         "--enable=QtDBus",
@@ -17,24 +16,21 @@
         "--enable=QtWebChannel",
         "--enable=QtWidgets",
         "--no-designer-plugin",
-        "--no-dist-info",
         "--no-docstrings",
+        "--no-make",
         "--no-qml-plugin",
-        "--no-qsci-api",
-        "--no-stubs",
         "--no-tools",
-        "QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.8/'",
-        "QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.8/'"
+        "--api-dir=/app/share/qt/qsci/api/python",
+        "--qmake-setting=QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.8/'",
+        "--qmake-setting=QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.8/'",
+        "--qt-shared"
     ],
-    "build-options": {
-        "arch": {
-            "aarch64": {
-                "config-opts": [
-                    "--disable-feature=PyQt_Desktop_OpenGL"
-                ]
-            }
-        }
-    },
+    "make-args": [
+        "--directory=build"
+    ],
+    "make-install-args": [
+        "--directory=build"
+    ],
     "sources": [
         {
             "type": "archive",
@@ -48,18 +44,70 @@
         {
             "type": "script",
             "commands": [
-                "processed=`sed -e 's|prefix|sysroot|' <<< $@`",
-                "python3 configure.py $processed"
+                "processed=`sed -e 's|prefix=/app|target-dir=/app/lib/python3.8/site-packages|' <<< $@`",
+                "sip-build $processed",
+                "echo 'trick flatpak-builder into running make' > Makefile"
             ],
             "dest-filename": "configure"
+        },
+        {
+            "type": "shell",
+            "commands": [
+                "echo '[tool.sip.bindings.QtGui]' >> pyproject.toml",
+                "echo 'disabled-features = [\"PyQt_Desktop_OpenGL\"]' >> pyproject.toml"
+            ],
+            "only-arches": [
+                "aarch64"
+            ]
         }
     ],
     "cleanup": [
         "/share/sip"
     ],
     "modules": [
-        "sip4.json",
         "../dbus-python/dbus-python.json",
-        "../python-opengl/python-opengl.json"
+        "../python-opengl/python-opengl.json",
+        "sip.json",
+        {
+            "name": "pyqt-builder",
+            "buildsystem": "simple",
+            "build-commands": [
+                "python setup.py build",
+                "python setup.py install --skip-build --prefix=/app --root=/ --optimize=1"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://pypi.io/packages/source/P/PyQt-builder/PyQt-builder-1.9.1.tar.gz",
+                    "sha256": "8d669fe8fa434a3e47abde3b40d924d91932e8e19d88b20c778a3e1c77621ebc",
+                    "x-checker-data": {
+                        "type": "pypi",
+                        "name": "PyQt-builder"
+                    }
+                }
+            ],
+            "cleanup": [
+                "*"
+            ]
+        },
+        {
+            "name": "pyqt5-sip",
+            "buildsystem": "simple",
+            "build-commands": [
+                "python setup.py build",
+                "python setup.py install --skip-build --prefix=/app --root=/ --optimize=1"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://pypi.python.org/packages/source/P/PyQt5-sip/PyQt5_sip-12.8.1.tar.gz",
+                    "sha256": "30e944db9abee9cc757aea16906d4198129558533eb7fadbe48c5da2bd18e0bd",
+                    "x-checker-data": {
+                        "type": "pypi",
+                        "name": "PyQt5-sip"
+                    }
+                }
+            ]
+        }
     ]
 }
