@@ -1,0 +1,125 @@
+{
+  "name": "sip",
+  "modules": [
+    {
+      "name": "sip6",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python setup.py build",
+        "python setup.py install --skip-build --prefix=/app --root=/ --optimize=1"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://pypi.python.org/packages/source/s/sip/sip-6.0.3.tar.gz",
+          "sha256": "929e3515428ea962003ccf6795244a5fe4fa6e2c94dc9ab8cb2c58fcd368c34c",
+          "x-checker-data": {
+            "type": "pypi",
+            "name": "sip"
+          }
+        }
+      ],
+      "cleanup": [
+        "/bin",
+        "/include"
+      ],
+      "modules": [
+        {
+          "name": "python-pyparsing",
+          "buildsystem": "simple",
+          "build-commands": [
+            "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"pyparsing\" --no-build-isolation"
+          ],
+          "sources": [
+            {
+              "type": "file",
+              "url": "https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz",
+              "sha256": "c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1",
+              "x-checker-data": {
+                "type": "pyparsing",
+                "name": "toml"
+              }
+            }
+          ]
+        },
+        {
+          "name": "python-packaging",
+          "buildsystem": "simple",
+          "build-commands": [
+            "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"packaging\" --no-build-isolation"
+          ],
+          "sources": [
+            {
+              "type": "file",
+              "url": "https://files.pythonhosted.org/packages/86/3c/bcd09ec5df7123abcf695009221a52f90438d877a2f1499453c6938f5728/packaging-20.9.tar.gz",
+              "sha256": "5b327ac1320dc863dca72f4514ecc086f31186744b84a230374cc1fd776feae5",
+              "x-checker-data": {
+                "type": "pypi",
+                "name": "packaging"
+              }
+            }
+          ]
+        },
+        {
+          "name": "python-toml",
+          "buildsystem": "simple",
+          "build-commands": [
+            "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"toml\" --no-build-isolation"
+          ],
+          "sources": [
+            {
+              "type": "file",
+              "url": "https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz",
+              "sha256": "b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f",
+              "x-checker-data": {
+                "type": "pypi",
+                "name": "toml"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pyqt-builder",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python setup.py build",
+        "python setup.py install --skip-build --prefix=/app --root=/ --optimize=1"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://pypi.io/packages/source/P/PyQt-builder/PyQt-builder-1.9.1.tar.gz",
+          "sha256": "8d669fe8fa434a3e47abde3b40d924d91932e8e19d88b20c778a3e1c77621ebc",
+          "x-checker-data": {
+            "type": "pypi",
+            "name": "PyQt-builder"
+          }
+        }
+      ],
+      "cleanup": [
+        "*"
+      ]
+    },
+    {
+      "name": "pyqt5-sip",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python setup.py build",
+        "python setup.py install --skip-build --prefix=/app --root=/ --optimize=1"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://pypi.python.org/packages/source/P/PyQt5-sip/PyQt5_sip-12.8.1.tar.gz",
+          "sha256": "30e944db9abee9cc757aea16906d4198129558533eb7fadbe48c5da2bd18e0bd",
+          "x-checker-data": {
+            "type": "pypi",
+            "name": "PyQt5-sip"
+          }
+        }
+      ]
+    }
+  ]
+}
