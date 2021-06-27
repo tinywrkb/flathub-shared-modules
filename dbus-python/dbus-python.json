@@ -14,5 +14,8 @@
                 "name": "dbus-python"
             }
         }
+    ],
+    "cleanup": [
+        "*.la"
     ]
 }
