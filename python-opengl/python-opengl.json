@@ -14,5 +14,8 @@
                 "name": "PyOpenGL"
             }
         }
+    ],
+    "modules": [
+        "../freeglut/freeglut.json"
     ]
 }
