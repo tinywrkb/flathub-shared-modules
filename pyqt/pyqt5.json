@@ -62,7 +62,9 @@
         }
     ],
     "cleanup": [
-        "/share/sip"
+        "/share/sip",
+        /* removing qsci (qscintilla api)*/
+        "/share/qt"
     ],
     "modules": [
         "../dbus-python/dbus-python.json",
