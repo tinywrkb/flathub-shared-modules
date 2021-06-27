@@ -6,17 +6,20 @@
     ]
   },
   "config-opts": [
-    "--concatenate",
-    "--no-dist-info",
+    "--concatenate=1",
     "--no-docstrings",
-    "--no-qsci-api",
-    "--no-sip-files",
     "--verbose",
-    "QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.8/'",
-    "QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.8/'",
-    "QMAKE_INCDIR+=/app/include/QtWebEngine",
-    "QMAKE_INCDIR+=/app/include/QtWebEngineCore",
-    "QMAKE_INCDIR+=/app/include/QtWebEngineWidgets"
+    "--qmake-setting=QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.8/'",
+    "--qmake-setting=QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.8/'",
+    "--qmake-setting=QMAKE_INCDIR+=/app/include/QtWebEngine",
+    "--qmake-setting=QMAKE_INCDIR+=/app/include/QtWebEngineCore",
+    "--qmake-setting=QMAKE_INCDIR+=/app/include/QtWebEngineWidgets"
+  ],
+  "make-args": [
+    "--directory=build"
+  ],
+  "make-install-args": [
+    "--directory=build"
   ],
   "sources": [
     {
@@ -31,8 +34,9 @@
     {
       "type": "script",
       "commands": [
-        "processed=`sed -e 's|prefix|sysroot|' <<< $@`",
-        "python3 configure.py $processed"
+        "processed=`sed -e 's|prefix=/app|target-dir=/app/lib/python3.8/site-packages|' <<< $@`",
+        "sip-build $processed",
+        "echo 'trick flatpak-builder into running make' > Makefile"
       ],
       "dest-filename": "configure"
     }
