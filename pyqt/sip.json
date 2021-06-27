@@ -17,8 +17,7 @@
         }
     ],
     "cleanup": [
-        "/bin",
-        "/include"
+        "/bin"
     ],
     "modules": [
         {
