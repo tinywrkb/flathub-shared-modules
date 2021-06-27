@@ -24,7 +24,7 @@
     "sources": [
         {
             "type": "archive",
-            "url": "https://pypi.python.org/packages/source/P/PyQtWebEngine/PyQtWebEngine-5.15.4.tar.gz",
+            "url": "https://files.pythonhosted.org/packages/fb/5d/4c5bb7adca4f2436545a391fe311dcb4ccc711f1ce2ab7adb87475ec566e/PyQtWebEngine-5.15.4.tar.gz",
             "sha256": "cedc28f54165f4b8067652145aec7f732a17eadf6736835852868cf76119cc19",
             "x-checker-data": {
                 "type": "pypi",
