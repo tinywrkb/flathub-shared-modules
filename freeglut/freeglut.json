@@ -21,7 +21,9 @@
         }
     ],
     "cleanup": [
-        "/lib/cmake"
+        "/include",
+        "/lib/cmake",
+        "/lib/pkgconfig"
     ],
     "modules": [
         "../glu/glu-9.json"
