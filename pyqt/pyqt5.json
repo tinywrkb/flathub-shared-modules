@@ -64,7 +64,6 @@
         }
     ],
     "cleanup": [
-        "/share/sip",
         /* removing qsci (qscintilla api)*/
         "/share/qt"
     ],
