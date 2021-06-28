@@ -67,7 +67,6 @@
         "/share/qt"
     ],
     "modules": [
-        "../dbus-python/dbus-python.json",
         "../python-opengl/python-opengl.json",
         "sip.json",
         {
