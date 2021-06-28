@@ -3,6 +3,7 @@
     "config-opts": [
         "--concatenate=1",
         "--confirm-license",
+        "--debug",
         "--enable=QtCore",
         "--enable=QtDBus",
         "--enable=QtGui",
@@ -20,6 +21,7 @@
         "--no-make",
         "--no-qml-plugin",
         "--no-tools",
+        "--verbose",
         "--api-dir=/app/share/qt/qsci/api/python",
         "--qmake-setting=QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.8/'",
         "--qmake-setting=QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.8/'",
