@@ -3,6 +3,7 @@
 
 /dbus-glib/        @TingPing
 /gtk2/             @TingPing
+/gtkimm/           @tinywrkb
 /gudev/            @Erick555
 /intltool/         @TingPing
 /libappindicator/  @TingPing
